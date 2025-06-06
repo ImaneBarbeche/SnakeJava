@@ -6,15 +6,17 @@ import java.util.Random;
 
 public class GamePanel extends JPanel implements ActionListener {
 
+    static final int DELAY = 100;
     // dimensions de l'écran : le plateau est un carré de 600px, divisé en blocs de
     // 25px.
     static final int SCREEN_WIDTH = 600;
     static final int SCREEN_HEIGHT = 600;
     static final int UNIT_SIZE = 25;
-    static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT) / (UNIT_SIZE * UNIT_SIZE);
 
-    final int x[] = new int[GAME_UNITS]; // tableau pour stocker les coordonnées x du serpent
-    final int y[] = new int[GAME_UNITS]; // tableau pour stocker les coordonnées y du serpent
+    static final int MAX_SNAKE_LENGTH = 100; // ou une autre valeur raisonnable
+
+    final int x[] = new int[MAX_SNAKE_LENGTH]; // tableau pour stocker les coordonnées x du serpent
+    final int y[] = new int[MAX_SNAKE_LENGTH]; // tableau pour stocker les coordonnées y du serpent
 
     int bodyParts = 6; // le serpent commence avec 6 blocs de corps
 
@@ -41,7 +43,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     public void startGame() {
         newstrawberry(); // place la première pomme aléatoirement
-        timer = new Timer(100, this); // 100 ms pour chaque mouvement
+        timer = new Timer(DELAY, this);
         timer.start(); // démarre le timer
         running = true; // le jeu commence
     }
@@ -97,7 +99,7 @@ public class GamePanel extends JPanel implements ActionListener {
                         direction = 'R';
                         running = true;
                         newstrawberry();
-                        timer = new Timer(100, GamePanel.this);
+                        timer = new Timer(DELAY, GamePanel.this);
                         timer.start();
                     }
                     break;
@@ -182,24 +184,24 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void gameOver(Graphics g) {
-    // fond arrondi
-    g.setColor(new Color(255, 240, 245));
-    g.fillRoundRect(100, 200, 400, 150, 30, 30);
+        // fond arrondi
+        g.setColor(new Color(255, 240, 245));
+        g.fillRoundRect(100, 200, 400, 150, 30, 30);
 
-    // "Game Over"
-    g.setColor(new Color(255, 105, 180));
-    g.setFont(new Font("Kristen ITC", Font.PLAIN, 18));
-    g.drawString("Aïe... le serpent s'est cogné !", 150, 250);
+        // "Game Over"
+        g.setColor(new Color(255, 105, 180));
+        g.setFont(new Font("Kristen ITC", Font.PLAIN, 18));
+        g.drawString("Aïe... le serpent s'est cogné !", 150, 250);
 
-    // score
-    g.setColor(new Color(90, 90, 90));
-    g.setFont(new Font("Kristen ITC", Font.PLAIN, 16));
-    g.drawString("Score : " + strawberrysEaten, 150, 285);
+        // score
+        g.setColor(new Color(90, 90, 90));
+        g.setFont(new Font("Kristen ITC", Font.PLAIN, 16));
+        g.drawString("Score : " + strawberrysEaten, 150, 285);
 
-    // message de relance
-    g.setFont(new Font("Kristen ITC", Font.PLAIN, 14));
-    g.drawString("Tu peux recommencer en appuyant sur Espace !", 150, SCREEN_HEIGHT / 2 + 70);
+        // message de relance
+        g.setFont(new Font("Kristen ITC", Font.PLAIN, 14));
+        g.drawString("Tu peux recommencer en appuyant sur Espace !", 150, SCREEN_HEIGHT / 2 + 70);
 
-}
+    }
 
 }
