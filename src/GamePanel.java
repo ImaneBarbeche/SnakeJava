@@ -13,7 +13,7 @@ public class GamePanel extends JPanel implements ActionListener {
     static final int SCREEN_HEIGHT = 600;
     static final int UNIT_SIZE = 25;
 
-    static final int MAX_SNAKE_LENGTH = 100; // ou une autre valeur raisonnable
+    static final int MAX_SNAKE_LENGTH = 100;
 
     final int x[] = new int[MAX_SNAKE_LENGTH]; // tableau pour stocker les coordonnées x du serpent
     final int y[] = new int[MAX_SNAKE_LENGTH]; // tableau pour stocker les coordonnées y du serpent
